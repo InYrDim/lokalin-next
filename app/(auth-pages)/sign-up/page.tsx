@@ -43,7 +43,7 @@ export default async function Signup(props: {
 					</CardDescription>
 				</CardHeader>
 				<div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
-					<Label htmlFor="email">Email</Label>
+					{/* <Label htmlFor="email">Email</Label>
 					<Input
 						name="email"
 						placeholder="you@example.com"
@@ -63,7 +63,7 @@ export default async function Signup(props: {
 					>
 						Sign up
 					</SubmitButton>
-					<FormMessage message={searchParams} />
+					<FormMessage message={searchParams} /> */}
 				</div>
 			</form>
 		</>

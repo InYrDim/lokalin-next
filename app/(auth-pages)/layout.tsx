@@ -1,5 +1,4 @@
 import { Authcard } from "@/components/authcard";
-import { createClient } from "@supabase/supabase-js";
 
 export default async function Layout({
 	children,
@@ -7,7 +6,7 @@ export default async function Layout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="max-w-7xl flex flex-col gap-12 items-start">
+		<div className="max-w-7xl flex flex-1 justify-center flex-col gap-12 items-start">
 			<Authcard>{children}</Authcard>
 		</div>
 	);

@@ -12,10 +12,16 @@ export default async function AuthButton() {
 	} = await supabase.auth.getUser();
 
 	return user ? (
-		<div className="flex items-center gap-4">
-			Hey, {user.email}!
+		<div className="flex items-end sm:items-center gap-4 flex-col sm:flex-row">
+			<Link href={"/protected"}>
+				<Button variant={"neutral"}>Dashboard</Button>
+			</Link>
 			<form action={signOutAction}>
-				<Button type="submit" variant={"noShadow"}>
+				<Button
+					type="submit"
+					variant={"neutral"}
+					className="hover:bg-main"
+				>
 					Sign out
 				</Button>
 			</form>

@@ -8,7 +8,7 @@ import image from "@/assets/images/logo.png";
 export default function Brand() {
 	return (
 		<Link href={"/"} className="flex items-center gap-2">
-			<div className="w-10 h-20 relative">
+			<div className="w-10 h-10 relative">
 				<Image
 					src={image}
 					alt="Lokalin"

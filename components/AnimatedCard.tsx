@@ -13,9 +13,7 @@ export default function AnimatedCard({
 	className = "",
 }: AnimatedCardProps) {
 	return (
-		<Card
-			className={`relative overflow-hidden rounded-x bg-transparent ${className}0`}
-		>
+		<div className={`${className}`}>
 			<motion.div
 				className={`bg-gradient-to-b from-curious-500 via-apple-600 to-apple-900`}
 				style={{
@@ -30,8 +28,8 @@ export default function AnimatedCard({
 					ease: "linear",
 				}}
 			>
-				{children}
+				<Card className="bg-transparent">{children}</Card>
 			</motion.div>
-		</Card>
+		</div>
 	);
 }

@@ -16,7 +16,7 @@ export default function Hero() {
 				</p>
 				<Button variant={"neutral"} className="mt-10">
 					<Link
-						href="/protected"
+						href="/dashboard"
 						className=" flex items-center gap-2"
 					>
 						Cari Wisata <ArrowRight />

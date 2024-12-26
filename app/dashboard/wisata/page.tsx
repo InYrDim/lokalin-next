@@ -1,12 +1,12 @@
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-import { tours } from "./toursData"; // TODO: remove this, use API when ready
 import Framer from "@/components/framer";
+import { getTours } from "@/utils/handlers/api";
 
-export default function Page() {
+export default async function Page() {
+	const tours = await getTours();
+	if (!tours) return <div>No tours found</div>;
 	return (
 		<div className="flex flex-col">
 			<h1 className="text-2xl font-bold">Lihat Wisata di Sekitar Anda</h1>

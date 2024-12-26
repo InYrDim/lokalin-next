@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-import { tours, type Tour } from "../toursData"; // TODO: remove this, use API when ready
+import { getTours } from "@/utils/handlers/api";
 
 interface PageProps {
 	params: Promise<{ id: string }>;
@@ -9,15 +9,13 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
 	const { id } = await params;
-	const tour: Tour | undefined = tours.find(
-		(tour) => tour.id === parseInt(id)
-	);
+	const tours = await getTours();
+	const tour = tours.find((tour) => tour.id === parseInt(id));
 
 	if (!tour) {
 		return <div>Tour not found</div>;
 	}
 
-	console.log(tour);
 	return (
 		<div className="flex flex-col gap-4">
 			<h1 className="text-2xl font-bold">{tour.name}</h1>

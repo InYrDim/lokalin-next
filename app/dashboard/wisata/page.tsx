@@ -3,16 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Framer from "@/components/framer";
 
-import { getTours } from "@/services/tours/toursData";
-const tours = getTours().data;
-
 export default async function Page() {
+	const tours = await fetch("https://lokalin-next.vercel.app/api/tours").then(
+		(res) => res.json()
+	);
 	if (!tours) return <div>No tours found</div>;
 	return (
 		<div className="flex flex-col">
 			<h1 className="text-2xl font-bold">Lihat Wisata di Sekitar Anda</h1>
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-				{tours.map((tour, idx) => (
+				{tours.map((tour: any, idx: any) => (
 					<Framer key={tour.id}>
 						<Card
 							key={tour.id}

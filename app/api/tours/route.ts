@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
 
-function createTours({
-	id,
-	name,
-	description,
-}: {
+interface Tour {
 	id: number;
 	name: string;
 	description: string;
-}) {
+}
+
+function createTours({ id, name, description }: Tour) {
 	const toursMap = new Map();
 	toursMap.set("id", id);
 	toursMap.set("name", name);
@@ -47,14 +45,22 @@ tours.push(
 	})
 );
 
+function convertMapToObject(map: any) {
+	return {
+		id: map.get("id"),
+		name: map.get("name"),
+		description: map.get("description"),
+	};
+}
+
 export async function GET() {
-	return NextResponse.json(tours);
+	const toursData = tours.map((tour: Tour) => convertMapToObject(tour));
+
+	return NextResponse.json(toursData);
 }
 
 export async function POST(request: Request) {
-	const tours = await request.json();
-	const tour = tours.data;
-
+	const tour = await request.json();
 	const { id, name, description } = tour;
 
 	tours.push(
@@ -64,5 +70,8 @@ export async function POST(request: Request) {
 			description: description,
 		})
 	);
-	return NextResponse.json(tours);
+
+	const toursData = tours.map((tour: Tour) => convertMapToObject(tour));
+
+	return NextResponse.json(toursData);
 }

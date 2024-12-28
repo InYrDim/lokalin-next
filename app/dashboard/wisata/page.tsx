@@ -3,23 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Framer from "@/components/framer";
 
-export const dynamic = "force-dynamic";
+import { getTours } from "@/services/tours/toursData";
+const tours = getTours().data;
 
 export default async function Page() {
-	const tours = [
-		{
-			id: 1,
-			name: "Bali Island Tour",
-			description: "Explore the beautiful beaches and culture of Bali.",
-		},
-		{
-			id: 2,
-			name: "Jakarta City Tour",
-			description:
-				"Visit the bustling capital city of Indonesia with historical sites.",
-		},
-	];
-
 	if (!tours) return <div>No tours found</div>;
 	return (
 		<div className="flex flex-col">

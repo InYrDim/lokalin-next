@@ -1,27 +1,16 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+import { getTours } from "@/services/tours/toursData";
+const tours = getTours().data;
+
 interface PageProps {
 	params: Promise<{ id: string }>;
 }
 
 export default async function Page({ params }: PageProps) {
 	const { id } = await params;
-	const tourData = [
-		{
-			id: 1,
-			name: "Bali Island Tour",
-			description: "Explore the beautiful beaches and culture of Bali.",
-		},
-		{
-			id: 2,
-			name: "Jakarta City Tour",
-			description:
-				"Visit the bustling capital city of Indonesia with historical sites.",
-		},
-	];
-
-	const tour = tourData.find((tour) => tour.id === Number(id));
+	const tour = tours.find((tour) => tour.id === Number(id));
 
 	if (!tour) {
 		return <div>Tour not found</div>;

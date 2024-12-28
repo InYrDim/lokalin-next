@@ -5,40 +5,33 @@ interface Tour {
 	name: string;
 	description: string;
 }
-const rawData = new Promise((resolve, reject) => {
-	setTimeout(() => {
-		const exampleData = [
-			{
-				id: 1,
-				name: "Bali Island Tour",
-				description:
-					"Explore the beautiful beaches and culture of Bali.",
-			},
-			{
-				id: 2,
-				name: "Jakarta City Tour",
-				description:
-					"Visit the bustling capital city of Indonesia with historical sites.",
-			},
-		];
-		resolve(JSON.stringify(exampleData));
-	}, 100); // Simulate network delay
-});
+
+// to simulate database data
+const exampleData = [
+	{
+		id: 1,
+		name: "Bali Island Tour",
+		description: "Explore the beautiful beaches and culture of Bali.",
+	},
+	{
+		id: 2,
+		name: "Jakarta City Tour",
+		description:
+			"Visit the bustling capital city of Indonesia with historical sites.",
+	},
+];
 
 /**
  * Retrieves all available tours
  */
 export async function GET(): Promise<NextResponse> {
 	try {
-		const data = await rawData;
-		const dt: Tour[] = JSON.parse(data as string);
-
-		const tours = dt.reduce((map, tour) => {
-			map.set(tour.id, tour);
-			return map;
-		}, new Map<number, Tour>());
-
-		return NextResponse.json({ data: tours }, { status: 200 });
+		return NextResponse.json(
+			{
+				data: exampleData,
+			},
+			{ status: 200 }
+		);
 	} catch (error) {
 		return NextResponse.json(
 			{ error: "Failed to fetch tours" },
@@ -61,8 +54,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 			);
 		}
 
-		const data = await rawData;
-		const dt: Tour[] = JSON.parse(data as string);
+		const dt: Tour[] = exampleData;
 
 		const tours = dt.reduce((map, tour) => {
 			map.set(tour.id, tour);

@@ -2,10 +2,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Framer from "@/components/framer";
-import { getTours } from "@/utils/handlers/api";
+import { getTours } from "@/utils/handlers/api/tours";
+
+export const dynamic = "force-dynamic";
 
 export default async function Page() {
 	const tours = await getTours();
+
 	if (!tours) return <div>No tours found</div>;
 	return (
 		<div className="flex flex-col">

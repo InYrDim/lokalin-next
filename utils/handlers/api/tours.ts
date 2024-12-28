@@ -4,20 +4,22 @@ export interface Tour {
 	description: string;
 }
 
-// get
+const origin = process.env.VERCEL_URL || "http://localhost:3000";
+
+// // get
 export async function getTours(): Promise<Tour[]> {
-	const res = await fetch("/api/tours");
-	const { data } = await res.json();
+	const tours = await fetch(`${origin}/api/tours`);
+	const { data }: { data: Tour[] } = await tours.json();
 	return data;
 }
 
-// get by id
+// // get by id
 export async function getTour(id: number): Promise<Tour | undefined> {
 	const tours = await getTours();
 	return tours.find((tour) => tour.id === id);
 }
 
-// post
+// // post
 export async function postTour(tour: Tour): Promise<Tour> {
 	const res = await fetch("/api/tours", {
 		method: "POST",

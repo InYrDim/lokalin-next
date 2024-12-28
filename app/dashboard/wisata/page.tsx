@@ -5,8 +5,6 @@ import Framer from "@/components/framer";
 
 import { getTours } from "@/utils/handlers/api/tours";
 
-export const dynamic = "force-dynamic";
-
 export default async function Page() {
 	const tours = await getTours();
 
